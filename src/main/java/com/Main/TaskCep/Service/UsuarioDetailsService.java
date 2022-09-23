@@ -17,8 +17,8 @@ public class UsuarioDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String cpf) throws UsernameNotFoundException {
-        return Optional.ofNullable(usuarioRepository.findByCpf(cpf))
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return Optional.ofNullable(usuarioRepository.findByUsername(username))
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario não achado"));
     }
 }

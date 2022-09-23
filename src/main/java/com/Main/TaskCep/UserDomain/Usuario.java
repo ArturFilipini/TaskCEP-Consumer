@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -28,6 +29,8 @@ public class Usuario implements UserDetails {
     private Long id;
     @CPF
     private String cpf;
+    @NotEmpty
+    private String username;
     private String password;
     private String authorities;
 
@@ -44,7 +47,7 @@ public class Usuario implements UserDetails {
     }
     @Override
     public String getUsername() {
-        return this.cpf;
+        return this.username;
     }
 
     @Override

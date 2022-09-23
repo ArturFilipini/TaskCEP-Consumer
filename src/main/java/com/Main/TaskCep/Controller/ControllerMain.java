@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/user")
@@ -21,7 +21,6 @@ public class ControllerMain {
     public String helloworld(){
         return "Hello World";
     }
-
     @PostMapping("/usersave")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Usuario> save(@RequestBody Usuario usuario){
@@ -29,4 +28,5 @@ public class ControllerMain {
         usuario.setPassword(encode);
         return new ResponseEntity<>(usuarioService.save(usuario), HttpStatus.CREATED);
     }
+
 }
