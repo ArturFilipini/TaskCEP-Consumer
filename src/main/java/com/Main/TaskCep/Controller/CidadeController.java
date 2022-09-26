@@ -6,15 +6,18 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 
 @Controller
-@RequestMapping("/cidade")
+@RequestMapping("/main")
 @AllArgsConstructor
+@CrossOrigin("*")
 public class CidadeController {
     private final CidadeService cidadeService;
     @GetMapping("/save/{cep}")
@@ -22,6 +25,14 @@ public class CidadeController {
 
            return new ResponseEntity<>(cidadeService.GetAndSave(cep), HttpStatus.CREATED);
 
+    }
+    @GetMapping("/list/{id}")
+    public ResponseEntity<List<Cidades>> listById(@PathVariable Long id){
+        return new ResponseEntity<>(cidadeService.listById(id), HttpStatus.OK);
+    }
+    @GetMapping("/listall")
+    public ResponseEntity<List<Cidades>> listall(){
+        return new ResponseEntity<>(cidadeService.listall(), HttpStatus.OK);
     }
 
 }

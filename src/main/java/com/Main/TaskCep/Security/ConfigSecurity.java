@@ -1,6 +1,6 @@
 package com.Main.TaskCep.Security;
 
-import com.Main.TaskCep.Service.UsuarioDetailsService;
+import com.Main.TaskCep.Services.UsuarioDetailsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

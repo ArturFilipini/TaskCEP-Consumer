@@ -1,4 +1,4 @@
-package com.Main.TaskCep.UserDomain;
+package com.Main.TaskCep.Entidades;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

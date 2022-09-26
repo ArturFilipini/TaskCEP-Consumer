@@ -1,4 +1,4 @@
-package com.Main.TaskCep.Service;
+package com.Main.TaskCep.Services;
 
 import com.Main.TaskCep.Repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;
