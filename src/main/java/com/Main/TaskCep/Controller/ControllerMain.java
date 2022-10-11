@@ -30,10 +30,14 @@ public class ControllerMain {
         usuario.setPassword(encode);
         return new ResponseEntity<>(usuarioService.save(usuario), HttpStatus.CREATED);
     }
-    @RequestMapping("/findbycpf/{cpf}")
+    @GetMapping("/findbycpf/{cpf}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Usuario>> FindUserByCpf(@PathVariable String cpf){
         return new ResponseEntity<>(usuarioService.FindUserByCpf(cpf), HttpStatus.OK);
     }
+    @GetMapping("/listall")
+    public ResponseEntity<List<Usuario>> listall(){
+        return ResponseEntity.ok(usuarioService.listall());
+    }}
 
-}
+

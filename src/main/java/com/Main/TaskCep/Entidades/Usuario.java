@@ -33,6 +33,8 @@ public class Usuario implements UserDetails {
     private String username;
     private String password;
     private String authorities;
+    @NotEmpty
+    private String cep;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

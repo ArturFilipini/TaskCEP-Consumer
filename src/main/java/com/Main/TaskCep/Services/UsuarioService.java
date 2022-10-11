@@ -18,4 +18,8 @@ public class UsuarioService {
     public List<Usuario> FindUserByCpf(String cpf){
         return usuarioRepository.findByCpf(cpf);
     }
+
+    public List<Usuario> listall() {
+        return usuarioRepository.findAll();
+    }
 }
