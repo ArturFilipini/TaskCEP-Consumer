@@ -15,11 +15,16 @@ public class UsuarioService {
     public Usuario save(Usuario usuario){
         return usuarioRepository.save(usuario);
     }
-    public List<Usuario> FindUserByCpf(String cpf){
+    public Usuario FindUserByCpf(String cpf){
         return usuarioRepository.findByCpf(cpf);
     }
 
     public List<Usuario> listall() {
         return usuarioRepository.findAll();
+    }
+    public void deleteByCpf(String cpf){
+        Usuario entity = usuarioRepository.findByCpf(cpf);
+        usuarioRepository.delete(entity);
+
     }
 }

@@ -23,6 +23,7 @@ public class ControllerMain {
     public String helloworld(){
         return "Hello World";
     }
+
     @PostMapping("/usersave")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Usuario> save(@RequestBody Usuario usuario){
@@ -30,14 +31,25 @@ public class ControllerMain {
         usuario.setPassword(encode);
         return new ResponseEntity<>(usuarioService.save(usuario), HttpStatus.CREATED);
     }
+
     @GetMapping("/findbycpf/{cpf}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<Usuario>> FindUserByCpf(@PathVariable String cpf){
-        return new ResponseEntity<>(usuarioService.FindUserByCpf(cpf), HttpStatus.OK);
+    public ResponseEntity<Usuario> FindUserByCpf(@PathVariable String cpf){
+        return ResponseEntity.ok(usuarioService.FindUserByCpf(cpf));
     }
     @GetMapping("/listall")
     public ResponseEntity<List<Usuario>> listall(){
         return ResponseEntity.ok(usuarioService.listall());
-    }}
+    }
+    @DeleteMapping("/delete/{cpf}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> delete(@PathVariable String cpf){
+        usuarioService.deleteByCpf(cpf);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
+
+}
 
 

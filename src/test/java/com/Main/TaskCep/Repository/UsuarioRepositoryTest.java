@@ -56,29 +56,21 @@ class UsuarioRepositoryTest {
 
         Assertions.assertThat(UsuarioOptional).isEmpty();
     }
+
     @Test
-    @DisplayName("Find By Username and Returns ListofUser When Sucessful")
-    void findByUsername_ReturnsListOfUser_WhenSucessful(){
+    @DisplayName("Find by Cpf and Returns User When Sucessful")
+    void findByCpf_ReturnsUser_WhenSucessful(){
         Usuario usuario = createUsuario();
         Usuario save = usuarioRepository.save(usuario);
-        List<Usuario> username = usuarioRepository.findByUsername(usuario.getUsername());
-        Assertions.assertThat(username).isNotEmpty();
-        Assertions.assertThat(username).contains(save);
-    }
-    @Test
-    @DisplayName("Find by Cpf and Returns ListOfUser When Sucessful")
-    void findByCpf_ReturnsListOfUser_WhenSucessful(){
-        Usuario usuario = createUsuario();
-        Usuario save = usuarioRepository.save(usuario);
-        List<Usuario> byCpf = usuarioRepository.findByCpf(usuario.getCpf());
-        Assertions.assertThat(byCpf).contains(save);
-        Assertions.assertThat(byCpf).isNotEmpty();
+        Usuario byCpf = usuarioRepository.findByCpf(usuario.getCpf());
+        Assertions.assertThat(byCpf).isEqualTo(usuario);
+        Assertions.assertThat(byCpf).isNotNull();
     }
     @Test
     @DisplayName("Find By Username and Returns List Empty When Sucessful")
-    void findByUsername_ReturnsListOfUserEmpty_WhenSucessful(){
-        List<Usuario> username = usuarioRepository.findByUsername("sexo");
-        Assertions.assertThat(username);
+    void findByUsername_ReturnUserEmpty_WhenSucessful(){
+        Usuario username = usuarioRepository.findByUsername("sexo");
+        Assertions.assertThat(username).isNull();
     }
 
 
