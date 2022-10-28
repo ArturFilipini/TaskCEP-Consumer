@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -28,10 +29,8 @@ public class CidadeService {
         return cidadeRepository.save(cidades);
 
     }
-    public List<Cidades> listById(Long id){
-        Optional<Cidades> all = cidadeRepository.findById(id);
-        List<Cidades> A = all.stream().toList();
-        return A;
+    public Cidades listByCep(String cep){
+        return cidadeRepository.findByCep(cep);
     }
     public List<Cidades> listall(){
             return cidadeRepository.findAll();

@@ -7,13 +7,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class CidadeRepositoryTest {
@@ -75,18 +71,17 @@ class CidadeRepositoryTest {
 
     @Test
     @DisplayName("Find By Cep returns list of Cidades when Successful")
-    void findByName_ReturnsListOfCidades_WhenSuccessful(){
+    void findByCep_ReturnCidades_WhenSuccessful(){
         Cidades cidadeToBeSave = createCidade();
 
         Cidades cidadeSaved = this.cidadeRepository.save(cidadeToBeSave);
 
         String cep = cidadeSaved.getCep();
 
-        List<Cidades> cidadesList = this.cidadeRepository.findByCep(cep);
+        Cidades byCep = this.cidadeRepository.findByCep(cep);
 
-        Assertions.assertThat(cidadesList)
-                .isNotEmpty()
-                .contains(cidadeSaved);
+        Assertions.assertThat(byCep)
+                .isEqualTo(cidadeSaved);
 
     }
     

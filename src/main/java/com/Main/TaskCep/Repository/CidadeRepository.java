@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CidadeRepository extends JpaRepository<Cidades, Long> {
-    List<Cidades> findByCep(String cep);
+    Cidades findByCep(String cep);
 }

@@ -21,7 +21,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         auth.userDetailsService(usuarioDetailsService).passwordEncoder(passwordEncoder);
 
-        log.info(passwordEncoder.encode("artur"));
 
     }
 

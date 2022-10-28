@@ -16,16 +16,16 @@ import java.util.List;
 @AllArgsConstructor
 @CrossOrigin("*")
 public class CidadeController {
-    private final CidadeService cidadeService;
+    private CidadeService cidadeService;
     @PostMapping("/save/{cep}")
     public ResponseEntity<Cidades> save(@PathVariable String cep){
 
            return new ResponseEntity<>(cidadeService.GetAndSave(cep), HttpStatus.CREATED);
 
     }
-    @GetMapping("/list/{id}")
-    public ResponseEntity<List<Cidades>> listById(@PathVariable Long id){
-        return new ResponseEntity<>(cidadeService.listById(id), HttpStatus.OK);
+    @GetMapping("/list/{cep}")
+    public ResponseEntity <Cidades> listByCep(@PathVariable String cep){
+        return ResponseEntity.ok(cidadeService.listByCep(cep));
     }
     @GetMapping("/listall")
     public ResponseEntity<List<Cidades>> listall(){
